@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 
+// Calls to API
 import axios from 'axios';
 
+// Bootstrap Elements
 import Button from 'react-bootstrap/Button';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Spinner from 'react-bootstrap/Spinner';
 
+// Components
 import EndingPage from './EndingPage';
-import Question from './common/Question';
+import Answer from './common/Answer';
 
 class Questions extends Component {
   constructor(props) {
@@ -22,6 +25,7 @@ class Questions extends Component {
     };
   }
 
+  // Get questions and answers on component mount
   componentDidMount() {
     this.setState({ questionsLoading: true });
     axios
@@ -54,6 +58,8 @@ class Questions extends Component {
       .then()
       .catch(err => console.log(err));
   }
+
+  // Submit answer with its id to array of answer Ids
   submitAnswer = id => {
     const { questionNumber, questions, submittedAnswers } = this.state;
     questionNumber === questions.length
@@ -69,6 +75,7 @@ class Questions extends Component {
     console.log(questionNumber);
   };
 
+  // Handle page change
   handleClick = direction => {
     const { questionNumber, questions, submittedAnswers } = this.state;
     if (direction === 'back') {
@@ -96,6 +103,8 @@ class Questions extends Component {
       page,
       submittedAnswers
     } = this.state;
+
+    // Progress Bar
     const progressInstance = (
       <ProgressBar
         now={(100 / questions.length) * questionNumber}
@@ -119,32 +128,22 @@ class Questions extends Component {
             padding: '10px'
           }}
         >
-          <h4 className="display-5">Hi {this.props.name} here is your </h4>
+          <h4 className="display-5">Hi {this.props.name}, here is your </h4>
           <h1 className="display-4">
             {this.props.quizId[0].title} Questionaire
           </h1>
           <hr />
 
           {!questionsLoading ? (
-            <div className="question-area" style={{ alignItems: 'center' }}>
-              <p>{questions[questionNumber - 1].title}</p>
-              <div
-                className="answers-grid"
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 1fr',
-                  gridGap: '10px',
-                  marginBottom: '10px'
-                }}
-              >
+            <div className="question-area">
+              <h5 className="txt-center">
+                {questions[questionNumber - 1].title}
+              </h5>
+              <div className="answers-grid">
                 {answers[questionNumber - 1].map(answer => {
                   return (
-                    <Question
+                    <Answer
                       className="answer"
-                      style={{
-                        width: '100%',
-                        height: '100px'
-                      }}
                       submit={() => this.submitAnswer(answer.id)}
                       key={answer.id}
                       answer={answer.title}
@@ -179,10 +178,8 @@ class Questions extends Component {
               </div>
             </div>
           ) : (
-            <div>
-              <Spinner animation="grow" />
-              <Spinner animation="grow" />
-              <Spinner animation="grow" />
+            <div className="txt-center">
+              Loading Questions <Spinner animation="border" size="sm" />
             </div>
           )}
         </div>
