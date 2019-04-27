@@ -125,7 +125,7 @@ class Main extends Component {
             {this.getQuiz()}
             {!quizLoading ? (
               <OverlayTrigger
-                placement="top-start"
+                placement="bottom-middle"
                 delay={{ show: 150, hide: 400 }}
                 overlay={renderTooltip}
               >

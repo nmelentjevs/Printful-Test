@@ -51,7 +51,7 @@ class EndingPage extends Component {
     const { results, loadingResult } = this.state;
     return (
       <div className="final-page">
-        <h1 className="display-2">Thank You</h1>
+        <h1 className="display-4">Thank You</h1>
         {!loadingResult ? (
           <div className="result">
             {' '}
