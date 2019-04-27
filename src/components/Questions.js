@@ -128,18 +128,24 @@ class Questions extends Component {
             padding: '10px'
           }}
         >
-          <h4 className="display-5">Hi {this.props.name}, here is your </h4>
-          <h1 className="display-4">
-            {this.props.quizId[0].title} Questionaire
-          </h1>
+          <h3>
+            {this.props.quizId[0].title} Questionaire{' '}
+            <span style={{ fontSize: '.9rem' }}>for </span>
+            <span style={{ fontSize: '1.1rem' }}>{this.props.name}</span>
+          </h3>
           <hr />
 
           {!questionsLoading ? (
             <div className="question-area">
               <div className="txt-center" style={{ width: '100%' }}>
-                <h5 style={{ maxWidth: '300px', margin: '5px auto' }}>
-                  {this.state.questionNumber}.{' '}
-                  {questions[questionNumber - 1].title}
+                <h5 className="mx-auto" style={{ maxWidth: '300px' }}>
+                  <div variant="primary" />
+                  <p>
+                    <span style={{ fontSize: '1rem' }}>
+                      {`${questionNumber}/${questions.length}`}.{' '}
+                    </span>
+                    {questions[questionNumber - 1].title}
+                  </p>
                 </h5>
               </div>
               <div className="answers-grid">
@@ -160,7 +166,7 @@ class Questions extends Component {
                 style={{
                   display: 'flex',
                   width: '100%',
-                  justifyContent: 'space-between',
+                  justifyContent: 'space-around',
                   marginTop: '10px'
                 }}
               >
@@ -169,14 +175,6 @@ class Questions extends Component {
                   onClick={() => this.handleClick('back')}
                 >
                   Previous Question
-                </Button>
-                <Button
-                  variant="primary"
-                  onClick={() => this.handleClick('forward')}
-                >
-                  {questionNumber !== questions.length
-                    ? 'Skip Question'
-                    : 'Finish Test'}
                 </Button>
               </div>
             </div>
