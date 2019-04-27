@@ -4,6 +4,22 @@
   margin: 0;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+p,
+span,
+label,
+input,
+select,
+button {
+  font-family: 'Crimson Text', serif;
+}
+
 .wrapper {
   position: fixed;
   top: 50%;
@@ -65,6 +81,12 @@
 
 /* Small devices (landscape phones, 576px and up) */
 @media (max-width: 576px) {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-size: 2rem;
+  }
   .wrapper {
     position: fixed;
     top: 50%;

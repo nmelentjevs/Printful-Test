@@ -180,7 +180,9 @@ class Questions extends Component {
             </div>
           ) : (
             <div className="txt-center">
-              Loading Questions <Spinner animation="border" size="sm" />
+              <span>
+                Loading Questions <Spinner animation="border" size="sm" />
+              </span>
             </div>
           )}
         </div>

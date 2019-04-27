@@ -1,17 +1,6 @@
-## Project title
+## PrintFul Quiz
 
-A little info about your project and/ or overview that explains **what** the project is about.
-
-## Motivation
-
-A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
-
-## Build status
-
-Build status of continus integration i.e. travis, appveyor etc. Ex. -
-
-[![Build Status](https://travis-ci.org/akashnimare/foco.svg?branch=master)](https://travis-ci.org/akashnimare/foco)
-[![Windows Build Status](https://ci.appveyor.com/api/projects/status/github/akashnimare/foco?branch=master&svg=true)](https://ci.appveyor.com/project/akashnimare/foco/branch/master)
+Sample quiz app for application process.
 
 ## Code style
 
@@ -19,33 +8,44 @@ If you're using any code style like xo, standard etc. That will help others whil
 
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
 
-## Screenshots
-
-Include logo/demo screenshot etc.
-
 ## Tech/framework used
-
-Ex. -
 
 <b>Built with</b>
 
-- [Electron](https://electron.atom.io)
-
-## Features
-
-What makes your project stand out?
-
-## Code Example
-
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
+- [React](https://reactjs.org/)
 
 ## Installation
 
 Provide step by step series of examples and explanations about how to get a development env running.
 
+## Examples
+
+We have several examples [on the website](https://reactjs.org/). Here is the first one to get you started:
+
+```jsx
+import React from 'react';
+
+import Card from 'react-bootstrap/Card';
+
+function Answer(props) {
+  return (
+    <Card onClick={() => props.submit()}>
+      <Card.Body style={{ alignContent: 'cemter', cursor: 'pointer' }}>
+        {props.answer}
+      </Card.Body>
+    </Card>
+  );
+}
+
+export default Answer;
+```
+
+This example will render Answer Component into a container on the page.
+
 ## API Reference
 
-Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
+Printful Quiz API.
+Read Docs at https://documenter.getpostman.com/view/5986005/S1ERxxk4
 
 ## Tests
 
