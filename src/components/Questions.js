@@ -136,9 +136,12 @@ class Questions extends Component {
 
           {!questionsLoading ? (
             <div className="question-area">
-              <h5 className="txt-center">
-                {questions[questionNumber - 1].title}
-              </h5>
+              <div className="txt-center" style={{ width: '100%' }}>
+                <h5 style={{ maxWidth: '300px', margin: '5px auto' }}>
+                  {this.state.questionNumber}.{' '}
+                  {questions[questionNumber - 1].title}
+                </h5>
+              </div>
               <div className="answers-grid">
                 {answers[questionNumber - 1].map(answer => {
                   return (

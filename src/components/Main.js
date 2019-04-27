@@ -89,15 +89,15 @@ class Main extends Component {
     const { page, test, questions, name, quizLoading } = this.state;
 
     // Overlay trigger
-    const renderTooltip = props => (
+    const renderTooltip = arrowprops => (
       <div
-        {...props}
+        {...arrowprops}
         style={{
           backgroundColor: 'rgba(0, 0, 0, 0.85)',
           padding: '2px 10px',
           color: 'white',
           borderRadius: 3,
-          ...props.style
+          ...arrowprops.style
         }}
       >
         Click to start test
@@ -125,8 +125,8 @@ class Main extends Component {
             {this.getQuiz()}
             {!quizLoading ? (
               <OverlayTrigger
-                placement="bottom-middle"
-                delay={{ show: 250, hide: 400 }}
+                placement="top-start"
+                delay={{ show: 150, hide: 400 }}
                 overlay={renderTooltip}
               >
                 <Button variant="primary" type="submit" className="w-100">
