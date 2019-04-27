@@ -7,7 +7,7 @@ import Main from './components/Main';
 
 function App() {
   return (
-    <Container className="main container">
+    <Container className="main wrapper">
       <Main />
     </Container>
   );

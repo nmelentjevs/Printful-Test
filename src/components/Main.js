@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
 import axios from 'axios';
 
@@ -6,7 +6,6 @@ import Form from 'react-bootstrap/Form';
 import Spinner from 'react-bootstrap/Spinner';
 import Button from 'react-bootstrap/Button';
 import Questions from './Questions';
-import EndingPage from './EndingPage';
 
 class Main extends Component {
   constructor() {
@@ -81,7 +80,7 @@ class Main extends Component {
     // console.log(this.state);
     if (page === 1) {
       content = (
-        <div className="main-">
+        <div className="content-box">
           <h1 className="display-4 questionaire-title">Amazing Questionaire</h1>
           <Form onSubmit={e => this.nextPage(e)}>
             <Form.Group controlId="formBasicName">
@@ -108,13 +107,15 @@ class Main extends Component {
       );
     } else if (page === 2) {
       content = (
-        <Questions
-          changePage={this.changePage}
-          quizId={questions.filter(question => {
-            return question.title === test;
-          })}
-          name={name}
-        />
+        <div className="content-box" style={{ margin: '0 25%' }}>
+          <Questions
+            changePage={this.changePage}
+            quizId={questions.filter(question => {
+              return question.title === test;
+            })}
+            name={name}
+          />
+        </div>
       );
     }
     return content;

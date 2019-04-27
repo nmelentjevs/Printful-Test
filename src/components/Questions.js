@@ -7,6 +7,7 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 import Spinner from 'react-bootstrap/Spinner';
 
 import EndingPage from './EndingPage';
+import Question from './common/Question';
 
 class Questions extends Component {
   constructor(props) {
@@ -50,10 +51,11 @@ class Questions extends Component {
             });
         });
       })
+      .then()
       .catch(err => console.log(err));
   }
   submitAnswer = id => {
-    const { questionNumber, page, questions, submittedAnswers } = this.state;
+    const { questionNumber, questions, submittedAnswers } = this.state;
     questionNumber === questions.length
       ? this.setState({
           page: 'end',
@@ -63,12 +65,16 @@ class Questions extends Component {
           submittedAnswers: [...submittedAnswers, id],
           questionNumber: questionNumber + 1
         });
+    console.log(submittedAnswers);
+    console.log(questionNumber);
   };
 
   handleClick = direction => {
-    const { questionNumber, page, questions, submittedAnswers } = this.state;
+    const { questionNumber, questions, submittedAnswers } = this.state;
     if (direction === 'back') {
-      this.setState({ questionNumber: questionNumber - 1 });
+      if (questionNumber > 1) {
+        this.setState({ questionNumber: questionNumber - 1 });
+      }
     } else {
       questionNumber === questions.length
         ? this.setState({ ...this.state, page: 'end' })
@@ -78,6 +84,7 @@ class Questions extends Component {
             questionNumber: questionNumber + 1
           });
     }
+    console.log(questionNumber);
   };
 
   render() {
@@ -101,11 +108,17 @@ class Questions extends Component {
         <EndingPage
           answers={submittedAnswers}
           quizId={this.props.quizId[0].id}
+          className="content-box"
         />
       );
     } else if (page === 'quiz') {
       content = (
-        <div className="question-page">
+        <div
+          className="question-page"
+          style={{
+            padding: '10px'
+          }}
+        >
           <h4 className="display-5">Hi {this.props.name} here is your </h4>
           <h1 className="display-4">
             {this.props.quizId[0].title} Questionaire
@@ -113,33 +126,29 @@ class Questions extends Component {
           <hr />
 
           {!questionsLoading ? (
-            <div className="question-area">
-              {questions[questionNumber - 1].title}
+            <div className="question-area" style={{ alignItems: 'center' }}>
+              <p>{questions[questionNumber - 1].title}</p>
               <div
                 className="answers-grid"
                 style={{
                   display: 'grid',
                   gridTemplateColumns: '1fr 1fr',
-                  gridGap: '10px'
+                  gridGap: '10px',
+                  marginBottom: '10px'
                 }}
               >
                 {answers[questionNumber - 1].map(answer => {
                   return (
-                    <div
+                    <Question
                       className="answer"
                       style={{
                         width: '100%',
-                        height: '100px',
-                        background: 'pink',
-                        cursor: 'pointer'
+                        height: '100px'
                       }}
-                      onClick={() => {
-                        this.submitAnswer(answer.id);
-                      }}
+                      submit={() => this.submitAnswer(answer.id)}
                       key={answer.id}
-                    >
-                      {answer.title}
-                    </div>
+                      answer={answer.title}
+                    />
                   );
                 })}
               </div>
