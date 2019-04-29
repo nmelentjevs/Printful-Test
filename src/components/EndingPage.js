@@ -37,7 +37,6 @@ class EndingPage extends Component {
     answers.map(answer => {
       return (answerString += `&answers[]=${answer}`);
     });
-    console.log(answerString);
     axios
       .get(
         `https://cors-anywhere.herokuapp.com/https://printful.com/test-quiz.php?action=submit&quizId=${quizId}${answerString}`
