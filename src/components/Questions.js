@@ -35,7 +35,6 @@ class Questions extends Component {
         }`
       )
       .then(res => {
-        console.log(res.data);
         this.setState({
           questions: res.data
         });
